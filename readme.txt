@@ -43,6 +43,9 @@ PHP5 is required!
 
 == Changelog ==
 
+= 1.3.0 =
+* Some fix.
+
 = 1.2.0 =
 * Fixed to specification changes of Gist.
 
