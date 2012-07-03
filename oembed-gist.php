@@ -96,7 +96,7 @@ public function shortcode_gist($p)
     }
 }
 
-public function shortcode_gist($m, $attr, $url, $rattr)
+public function handler_github($m, $attr, $url, $rattr)
 {
     if (!isset($m[2]) || !isset($m[3]) || !$m[3]) {
         $m[3] = null;
@@ -132,9 +132,9 @@ public function footer_github(){
     if (count($this->js_github) > 0) {
         printf ('<script type="text/javascript" src="%s/repo.min.js"></script>', plugins_url('js', __FILE__));
         echo "<script>¥n";
-        echo "jQuery(function($){¥n"
+        echo "jQuery(function($){¥n";
         echo implode("¥n",$this->js_github);
-        echo ")};¥n"
+        echo ")};¥n";
         echo "</script>¥n";
     }
 }
