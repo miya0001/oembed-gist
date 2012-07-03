@@ -60,7 +60,7 @@ public function plugins_loaded()
     wp_embed_register_handler(
         'gist',
         '#https://gist.github.com/([a-zA-Z0-9]+)(\#file_(.+))?$#i',
-        array(&$this, 'handler_git')
+        array(&$this, 'handler_gist')
     );
     add_shortcode('gist', array(&$this, 'shortcode_gist'));
 
