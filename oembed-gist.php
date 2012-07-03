@@ -38,7 +38,11 @@ new gist();
 class gist {
 
 private $noscript;
-private $html = '<script src="https://gist.github.com/%s.js%s"></script><noscript>%s</noscript>';
+private $html_gist = '<script src="https://gist.github.com/%s.js%s"></script><noscript>%s</noscript>';
+
+private $repoid = 0;
+private $html_github = '<div id="%s"></div><noscript>%s</noscript>';
+private $js_github = array();
 
 function __construct()
 {
@@ -56,12 +60,20 @@ public function plugins_loaded()
     wp_embed_register_handler(
         'gist',
         '#https://gist.github.com/([a-zA-Z0-9]+)(\#file_(.+))?$#i',
-        array(&$this, 'handler')
+        array(&$this, 'handler_git')
     );
-    add_shortcode('gist', array(&$this, 'shortcode'));
+    add_shortcode('gist', array(&$this, 'shortcode_gist'));
+
+    add_action( 'wp_print_scripts', array(&$this,'add_scripts') );
+    wp_embed_register_handler(
+        'github',
+        '#https://github.com/([a-zA-Z0-9]+)/([^/]*)?$#i',
+        array(&$this, 'handler_github')
+    );
+    add_shortcode('github', array(&$this, 'shortcode_github'));
 }
 
-public function handler($m, $attr, $url, $rattr)
+public function handler_gist($m, $attr, $url, $rattr)
 {
     if (!isset($m[2]) || !isset($m[3]) || !$m[3]) {
         $m[3] = null;
@@ -69,7 +81,7 @@ public function handler($m, $attr, $url, $rattr)
     return '[gist id="'.$m[1].'" file="'.$m[3].'"]';
 }
 
-public function shortcode($p)
+public function shortcode_gist($p)
 {
     if (preg_match("/^[a-zA-Z0-9]+$/", $p['id'])) {
         $noscript = sprintf(
@@ -77,10 +89,53 @@ public function shortcode($p)
             $p['id']
         );
         if ($p['file']) {
-            return sprintf($this->html, $p['id'], '?file='.$p['file'], $noscript);
+            return sprintf($this->html_gist, $p['id'], '?file='.$p['file'], $noscript);
         } else {
-            return sprintf($this->html, $p['id'], '', $noscript);
+            return sprintf($this->html_gist, $p['id'], '', $noscript);
         }
+    }
+}
+
+public function shortcode_gist($m, $attr, $url, $rattr)
+{
+    if (!isset($m[2]) || !isset($m[3]) || !$m[3]) {
+        $m[3] = null;
+    }
+    return '[github id="'.$m[1].'" repo="'.$m[3].'"]';
+}
+
+public function shortcode_github($p)
+{
+    if (preg_match("/^[a-zA-Z0-9]+$/", $p['id'])) {
+        $noscript = sprintf(
+            __('<p>View the repo on <a href="https://github.com/%s">Gist</a>.</p>', 'oembed-gist'),
+            $p['id']
+        );
+        $js = '$("#%s").repo({user:"%s",name:"%s"});';
+
+        $repoid = sprintf('github-repo-%d', $this->repoid);
+        $html = sprintf($this->html_github, $repoid, $noscript);
+        $this->js_github[] = sprintf($js, $repoid, $p['id'], (isset($p['repo']) ? $p['repo'] : ''));
+        $this->repoid++;
+
+		add_action('wp_footer', array(&$this, 'footer_github'));
+
+        return $html;
+    }
+}
+
+public function add_scripts() {
+    wp_enqueue_script( 'jquery' );
+}
+
+public function footer_github(){
+    if (count($this->js_github) > 0) {
+        printf ('<script type="text/javascript" src="%s/repo.min.js"></script>', plugins_url('js', __FILE__));
+        echo "<script>¥n";
+        echo "jQuery(function($){¥n"
+        echo implode("¥n",$this->js_github);
+        echo ")};¥n"
+        echo "</script>¥n";
     }
 }
 
