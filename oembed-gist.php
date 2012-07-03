@@ -131,11 +131,11 @@ public function add_scripts() {
 public function footer_github(){
     if (count($this->js_github) > 0) {
         printf ('<script type="text/javascript" src="%s/repo.min.js"></script>', plugins_url('js', __FILE__));
-        echo "<script>¥n";
-        echo "jQuery(function($){¥n";
-        echo implode("¥n",$this->js_github);
-        echo ")};¥n";
-        echo "</script>¥n";
+        echo "<script>\n";
+        echo "jQuery(function($){\n";
+        echo implode("\n",$this->js_github);
+        echo ")};\n";
+        echo "</script>\n";
     }
 }
 
