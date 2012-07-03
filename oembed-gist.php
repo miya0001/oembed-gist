@@ -101,7 +101,7 @@ public function handler_github($m, $attr, $url, $rattr)
     if (!isset($m[2]) || !isset($m[3]) || !$m[3]) {
         $m[3] = null;
     }
-    return '[github id="'.$m[1].'" repo="'.$m[3].'"]';
+    return '[github id="'.$m[1].'" repo="'.$m[2].'"]';
 }
 
 public function shortcode_github($p)
@@ -111,7 +111,7 @@ public function shortcode_github($p)
             __('<p>View the repo on <a href="https://github.com/%s">Gist</a>.</p>', 'oembed-gist'),
             $p['id']
         );
-        $js = '$("#%s").repo({user:"%s",name:"%s"});';
+        $js = '$("#%s").repo({ user: "%s", name: "%s" });';
 
         $repoid = sprintf('github-repo-%d', $this->repoid);
         $html = sprintf($this->html_github, $repoid, $noscript);
@@ -134,7 +134,7 @@ public function footer_github(){
         echo "<script>\n";
         echo "jQuery(function($){\n";
         echo implode("\n",$this->js_github);
-        echo ")};\n";
+        echo "\n});\n";
         echo "</script>\n";
     }
 }
