@@ -4,7 +4,7 @@ Plugin Name: oEmbed Gist
 Plugin URI: http://firegoby.jp/wp/oembed-gist
 Description: Embed source from gist.github.
 Author: Takayuki Miyauchi
-Version: 1.3.0
+Version: 1.4.0
 Author URI: http://firegoby.jp/
 */
 
@@ -55,7 +55,7 @@ public function plugins_loaded()
 
     wp_embed_register_handler(
         'gist',
-        '#https://gist.github.com/([a-zA-Z0-9]+)(\#file_(.+))?$#i',
+        '#https://gist.github.com/([^\/]+\/)?([a-zA-Z0-9]+)(\#file(\-|_)(.+))?$#i',
         array(&$this, 'handler')
     );
     add_shortcode('gist', array(&$this, 'shortcode'));
@@ -63,10 +63,10 @@ public function plugins_loaded()
 
 public function handler($m, $attr, $url, $rattr)
 {
-    if (!isset($m[2]) || !isset($m[3]) || !$m[3]) {
-        $m[3] = null;
+    if (!isset($m[3]) || !isset($m[5]) || !$m[5]) {
+        $m[5] = null;
     }
-    return '[gist id="'.$m[1].'" file="'.$m[3].'"]';
+    return '[gist id="'.$m[2].'" file="'.$m[5].'"]';
 }
 
 public function shortcode($p)
@@ -77,7 +77,8 @@ public function shortcode($p)
             $p['id']
         );
         if ($p['file']) {
-            return sprintf($this->html, $p['id'], '?file='.$p['file'], $noscript);
+            $file = preg_replace('/[\-\.]([a-z]+)$/', '.\1', $p['file']);
+            return sprintf($this->html, $p['id'], '?file='.$file, $noscript);
         } else {
             return sprintf($this->html, $p['id'], '', $noscript);
         }
