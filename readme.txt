@@ -23,7 +23,7 @@ PHP5 is required!
 
 = Support =
 
-* [Plugin Homepage](http://firegoby.theta.ne.jp/wp/oembed-gist)
+* [GitHub](https://github.com/miya0001/oembed-gist)
 * [Support](http://wordpress.org/tags/oembed-gist)
 
 
