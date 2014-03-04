@@ -63,7 +63,7 @@ public function plugins_loaded()
         array(&$this, 'handler')
     );
 
-    add_shortcode('gist', array($this, 'shortcode'));
+    add_shortcode($this->get_shortcode_tag(), array($this, 'shortcode'));
 
     add_filter(
         'jetpack_shortcodes_to_include',
@@ -122,6 +122,5 @@ private function get_shortcode_tag()
 }
 
 }
-
 
 // EOF
