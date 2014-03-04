@@ -38,6 +38,7 @@ $oe_gist->register();
 
 class gist {
 
+private $shotcode_tag = 'gist';
 private $noscript;
 private $html = '<script src="https://gist.github.com/%s.js%s"></script><noscript>%s</noscript>';
 
@@ -62,7 +63,23 @@ public function plugins_loaded()
         array(&$this, 'handler')
     );
 
-    add_shortcode('oe-gist', array($this, 'shortcode'));
+    add_shortcode('gist', array($this, 'shortcode'));
+
+    add_filter(
+        'jetpack_shortcodes_to_include',
+        array($this, 'jetpack_shortcodes_to_include')
+    );
+}
+
+public function jetpack_shortcodes_to_include($incs)
+{
+    $includes = array();
+    foreach ($incs as $inc) {
+        if (!preg_match("/gist\.php\z/", $inc)) {
+            $includes[] = $inc;
+        }
+    }
+    return $includes;
 }
 
 public function wp_head()
@@ -75,7 +92,12 @@ public function handler($m, $attr, $url, $rattr)
     if (!isset($m[3]) || !isset($m[5]) || !$m[5]) {
         $m[5] = null;
     }
-    return '[oe-gist id="'.$m[2].'" file="'.$m[5].'"]';
+    return sprintf(
+        '[%s id="%s" file="%s"]',
+        $this->get_shortcode_tag(),
+        esc_attr($m[2]),
+        esc_attr($m[5])
+    );
 }
 
 public function shortcode($p)
@@ -92,6 +114,11 @@ public function shortcode($p)
             return sprintf($this->html, $p['id'], '', $noscript);
         }
     }
+}
+
+private function get_shortcode_tag()
+{
+    return apply_filters('oembed_gist_shortcode_tag', $this->shotcode_tag);
 }
 
 }

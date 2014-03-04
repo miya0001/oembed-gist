@@ -3,7 +3,7 @@ Contributors: miyauchi
 Tags: url, link, oembed, visual editor, post, gist, github
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 
 Embed your source from gist into WordPress easily.
 
@@ -41,6 +41,9 @@ PHP5 is required!
 1. It just appears!
 
 == Changelog ==
+
+= 1.6.0 =
+* https://github.com/miya0001/oembed-gist/compare/1.5.0...1.6.0
 
 = 1.5.0 =
 * Fix problem with JetPack 2.9. Thanks [rickrduncan](http://wordpress.org/support/profile/rickrduncan) for patch.
