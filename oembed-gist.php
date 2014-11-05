@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: oEmbed Gist
-Plugin URI: http://firegoby.jp/wp/oembed-gist
+Plugin URI: https://github.com/miya0001/oembed-gist
 Description: Embed source from gist.github.
 Author: Takayuki Miyauchi
-Version: 1.6.0
+Version: 1.6.1
 Author URI: http://firegoby.jp/
 */
 
