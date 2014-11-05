@@ -42,6 +42,9 @@ PHP5 is required!
 
 == Changelog ==
 
+* 1.6.1
+* Tested up to 4.0
+
 = 1.6.0 =
 * https://github.com/miya0001/oembed-gist/compare/1.5.0...1.6.0
 
