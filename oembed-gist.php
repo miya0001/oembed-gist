@@ -4,7 +4,7 @@ Plugin Name: oEmbed Gist
 Plugin URI: https://github.com/miya0001/oembed-gist
 Description: Embed source from gist.github.
 Author: Takayuki Miyauchi
-Version: 1.7.0
+Version: 1.7.1
 Author URI: http://firegoby.jp/
 */
 
@@ -86,12 +86,6 @@ class gist {
 		if ( !isset( $m[3] ) || !isset( $m[5] ) || !$m[5] ) {
 			$m[5] = null;
 		}
-		// return sprintf(
-		// 	'[%s id="%s" file="%s"]',
-		// 	$this->get_shortcode_tag(),
-		// 	esc_attr( $m[2] ),
-		// 	esc_attr( $m[5] )
-		//  );
 
 		return $this->shortcode( array(
 			'id'   => esc_attr( $m[2] ),
@@ -107,7 +101,7 @@ class gist {
 				$p['id']
 			 );
 			if ( isset( $p['file'] ) ) { //RRD: Fixed line 79 error by adding isset()
-				$file = preg_replace( '/[\-\.]( [a-z]+ )$/', '.\1', $p['file'] );
+				$file = preg_replace( '/[\-\.]([a-z]+)$/', '.\1', $p['file'] );
 				return sprintf( $this->html, $p['id'], '?file='.$file, $noscript );
 			} else {
 				return sprintf( $this->html, $p['id'], '', $noscript );
