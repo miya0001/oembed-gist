@@ -71,11 +71,19 @@ class gist {
 		.gist .line,
 		.gist .line-number
 		{
-			height: 1.5em !important;
-			line-height: 1.5em !important;
+			font-size: 12px !important;
+			height: 18px !important;
+			line-height: 18px !important;
+		}
+		.gist .line
+		{
 			white-space: pre !important;
-			overflow: hidden !important;
-			box-sizing: border-box !important;
+			width: auto !important;
+			word-wrap: normal !important;
+		}
+		.gist .line span
+		{
+			word-wrap: normal !important;
 		}
 		</style>
 		<?php
