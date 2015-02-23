@@ -10,13 +10,13 @@ Embed your source from gist into WordPress easily.
 == Description ==
 
 * Embed your source from gist into WordPress easily.
-* You simply paste URL of your Gist.
-* You can embed an specific revision of the Gist.
+* You simply have to paste the URL of your Gist.
+* You can embed a specific revision of the Gist.
 * You can embed an individual file that is part of a multi-file Gist.
 
 = Summary =
 
-You can embed your program sources from gist simply paste URL like below.
+You can embed your program sources from gist by simply pasting the URL like below.
 
 * https://gist.github.com/973153
 * https://gist.github.com/973153#file_select_media.html
@@ -29,9 +29,9 @@ You can embed your program sources from gist simply paste URL like below.
 
 == Installation ==
 
-* A plug-in installation screen is displayed on the WordPress admin panel.
+* A plugin installation screen is displayed on the WordPress admin panel.
 * It installs it in `wp-content/plugins`.
-* The plug-in is made effective.
+* The plugin is made effective.
 
 
 == Screenshots ==
