@@ -44,6 +44,12 @@ class gist {
 			'jetpack_shortcodes_to_include',
 			array( $this, 'jetpack_shortcodes_to_include' )
 		 );
+		
+		add_filter(
+			'oembed_providers',
+			array( $this, 'oembed_providers' )
+		);
+		
 	}
 
 	public function jetpack_shortcodes_to_include( $incs )
@@ -57,6 +63,19 @@ class gist {
 		return $includes;
 	}
 
+	function oembed_providers( $providers )
+	{
+		//Support to Press This.
+		global $pagenow;
+		if ( 'press-this.php' == $pagenow && ! array_key_exists( $this->get_gist_regex(), $providers ) ) {
+			$providers[ $this->get_gist_regex() ] = array(
+				'https://gist.github.com/{id}.{format}', //dummy value
+				true
+			);
+		}
+		return $providers;	
+	}
+	
 	public function wp_head()
 	{
 		?>
