@@ -4,7 +4,7 @@ Plugin Name: oEmbed Gist
 Plugin URI: https://github.com/miya0001/oembed-gist
 Description: Embed source from gist.github.
 Author: Takayuki Miyauchi
-Version: 1.8.1
+Version: 1.9.0
 Author URI: http://firegoby.jp/
 */
 
@@ -44,12 +44,12 @@ class gist {
 			'jetpack_shortcodes_to_include',
 			array( $this, 'jetpack_shortcodes_to_include' )
 		 );
-		
+
 		add_filter(
 			'oembed_providers',
 			array( $this, 'oembed_providers' )
 		);
-		
+
 	}
 
 	public function jetpack_shortcodes_to_include( $incs )
@@ -73,9 +73,9 @@ class gist {
 				true
 			);
 		}
-		return $providers;	
+		return $providers;
 	}
-	
+
 	public function wp_head()
 	{
 		?>

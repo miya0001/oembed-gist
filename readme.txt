@@ -1,9 +1,9 @@
 === oEmbed Gist ===
-Contributors: miyauchi
+Contributors: miyauchi, mt8biz
 Tags: url, link, oembed, visual editor, post, gist, github
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 1.8.1
+Stable tag: 1.9.0
 
 Embed your source from gist into WordPress easily.
 
@@ -41,6 +41,9 @@ You can embed your program sources from gist by simply pasting the URL like belo
 1. It just appears!
 
 == Changelog ==
+
+= 1.9.0 =
+* Got it to work on Press This.
 
 = 1.8.1 =
 * Tested on WordPress 4.3
