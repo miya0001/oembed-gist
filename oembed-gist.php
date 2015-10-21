@@ -141,11 +141,15 @@ class gist {
 			$url = $url . '?file=' . $file;
 		}
 
-		return sprintf(
-			'<div class="oembed-gist"><script src="%s"></script><noscript>%s</noscript></div>',
-			$url,
-			$noscript
-		);
+		if( is_feed() ){
+			return $noscript;
+		}else{
+			return sprintf(
+				'<div class="oembed-gist"><script src="%s"></script><noscript>%s</noscript></div>',
+				$url,
+				$noscript
+			);
+		}
 	}
 
 	public function get_gist_regex()
