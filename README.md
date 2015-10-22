@@ -1,4 +1,4 @@
-# Simple Map
+# oembed-gist
 
 [![Build Status](https://travis-ci.org/miya0001/oembed-gist.svg)](https://travis-ci.org/miya0001/oembed-gist)
 [![](https://img.shields.io/wordpress/plugin/dt/oembed-gist.svg)](https://wordpress.org/plugins/oembed-gist/)
