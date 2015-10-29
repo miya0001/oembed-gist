@@ -23,6 +23,3 @@ msgid ""
 "<p>View the code on <a href=\"https://gist.github.com/%s\">Gist</a>.</p>"
 msgstr ""
 
-#: ../oembed_gist.php:86
-msgid "Pray for Japan"
-msgstr ""
