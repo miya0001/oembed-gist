@@ -4,7 +4,7 @@ Plugin Name: oEmbed Gist
 Plugin URI: https://github.com/miya0001/oembed-gist
 Description: Embed source from gist.github.
 Author: Takayuki Miyauchi
-Version: 2.0.1
+Version: 2.0.2
 Author URI: http://firegoby.jp/
 */
 

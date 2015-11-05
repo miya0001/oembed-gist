@@ -10,13 +10,25 @@ php:
     - 5.5
     - 5.6
 
-env:
-    - WP_VERSION=latest WP_MULTISITE=0
-    - WP_VERSION=4.2 WP_MULTISITE=0
-    - WP_VERSION=4.1 WP_MULTISITE=0
-    - WP_VERSION=4.0 WP_MULTISITE=0
-
 before_script:
     - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
 
 script: phpunit
+
+after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash
+
+matrix:
+  include:
+    - php: 5.3
+      env: WP_VERSION=latest WP_MULTISITE=0 WP_PULUGIN_DEPLOY=1
+
+env:
+    matrix:
+        - WP_VERSION=latest WP_MULTISITE=0
+        - WP_VERSION=4.2 WP_MULTISITE=0
+        - WP_VERSION=4.1 WP_MULTISITE=0
+        - WP_VERSION=4.0 WP_MULTISITE=0
+    global:
+        - SVN_REPO: https://plugins.svn.wordpress.org/oembed-gist/
+        - GH_REF: https://github.com/miya0001/oembed-gist.git
+        - secure: "Hi/8PA2WNtwnwTVtAstOvgPaEW7FShknikteEmYMaoWxnt2Ehrzl3f+s2aKd6Zx3skBK1mvhZoTXzAEx91Cj91rp07YuDUgUH78r35jqrU6EmwGpQSaHi09YMpSGIKftZ3KVVH46efURg5V8auugvehfaA2vy6H/UCLkE3BSkjM="
