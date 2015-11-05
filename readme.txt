@@ -3,7 +3,7 @@ Contributors: miyauchi, mt8biz
 Tags: url, link, oembed, visual editor, post, gist, github
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 
 Embed your source from gist into WordPress easily.
 
