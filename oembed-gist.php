@@ -82,6 +82,7 @@ class gist {
 		<style>
 		.gist table {
 			margin-bottom: 0 !important;
+			table-layout: auto !important;
 		}
 		.gist .line-numbers
 		{
