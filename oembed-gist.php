@@ -76,6 +76,8 @@ class gist {
 
 	public function gist_css()
 	{
+        $inject_css = true;
+        if ( apply_filters( 'oembed_gist_inject_css', $inject_css ) ) {
 		?>
 		<style>
 		.gist table {
@@ -105,6 +107,7 @@ class gist {
 		}
 		</style>
 		<?php
+        }
 	}
 
 	public function handler( $m, $attr, $url, $rattr )
