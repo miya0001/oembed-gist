@@ -130,6 +130,11 @@ class gist {
 			$url = 'https://gist.github.com/' . $p['id'];
 		}
 
+		// If displaying AMP page with wp-amp plugin - return link.
+		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+			return sprintf( __( '<a href="%s">See the gist on github</a>.', 'oembed-gist' ), esc_url( $url ) );
+		}
+
 		$noscript = sprintf(
 			__( 'View the code on <a href="%s">Gist</a>.', 'oembed-gist' ),
 			esc_url( $url )
