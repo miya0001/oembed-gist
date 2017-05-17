@@ -24,8 +24,6 @@ class gist {
 
 	public function plugins_loaded()
 	{
-		add_action( 'wp_head', array( $this, 'wp_head' ) );
-
 		load_plugin_textdomain(
 			'oembed-gist',
 			false,
@@ -76,8 +74,10 @@ class gist {
 		return $providers;
 	}
 
-	public function wp_head()
+	public function gist_css()
 	{
+        $inject_css = true;
+        if ( apply_filters( 'oembed_gist_inject_css', $inject_css ) ) {
 		?>
 		<style>
 		.gist table {
@@ -107,6 +107,7 @@ class gist {
 		}
 		</style>
 		<?php
+        }
 	}
 
 	public function handler( $m, $attr, $url, $rattr )
@@ -150,6 +151,7 @@ class gist {
 		if( is_feed() ){
 			return $noscript;
 		}else{
+            add_action( 'wp_footer', array( $this, 'gist_css' ) );
 			return sprintf(
 				'<div class="oembed-gist"><script src="%s"></script><noscript>%s</noscript></div>',
 				$url,
