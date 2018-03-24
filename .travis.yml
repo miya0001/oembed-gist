@@ -26,7 +26,6 @@ env:
     matrix:
         - WP_VERSION=trunk WP_MULTISITE=0
         - WP_VERSION=latest WP_MULTISITE=0
-        - WP_VERSION=4.0 WP_MULTISITE=0
     global:
         - SVN_REPO: https://plugins.svn.wordpress.org/oembed-gist/
         - GH_REF: https://github.com/miya0001/oembed-gist.git
