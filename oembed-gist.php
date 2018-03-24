@@ -4,14 +4,16 @@ Plugin Name: oEmbed Gist
 Plugin URI: https://github.com/miya0001/oembed-gist
 Description: Embed source from gist.github.
 Author: Takayuki Miyauchi
-Version: 4.8.0
+Version: nightly
 Author URI: http://firegoby.jp/
 */
 
 $oe_gist = new gist();
 $oe_gist->register();
 
-class gist {
+class gist
+{
+	const version = 'nightly';
 
 	private $shotcode_tag = 'gist';
 	private $noscript;
@@ -146,6 +148,14 @@ class gist {
 			$file = preg_replace( '/[\-\.]([a-z]+)$/', '.\1', $p['file'] );
 			$url = $url . '?file=' . $file;
 		}
+
+		wp_enqueue_script(
+			'oembed-gist',
+			plugins_url( 'js/script.js', __FILE__ ),
+			array(),
+			self::version,
+			true
+        );
 
 		if( is_feed() ){
 			return $noscript;
