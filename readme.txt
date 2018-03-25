@@ -42,6 +42,9 @@ You can embed your program sources from gist by simply pasting the URL like belo
 
 == Changelog ==
 
+= 4.9 =
+* Load CSS and JS only when the Gists is in the content.
+
 = 4.8 =
 * Displays output link when it is used with wp-amp. Thanks [@emirpprime](https://github.com/emirpprime)
 
