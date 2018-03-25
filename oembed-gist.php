@@ -26,8 +26,6 @@ class gist
 
 	public function plugins_loaded()
 	{
-		add_action( 'wp_head', array( $this, 'wp_head' ) );
-
 		load_plugin_textdomain(
 			'oembed-gist',
 			false,
@@ -78,39 +76,6 @@ class gist
 		return $providers;
 	}
 
-	public function wp_head()
-	{
-		?>
-		<style>
-		.gist table {
-			margin-bottom: 0 !important;
-			table-layout: auto !important;
-		}
-		.gist .line-numbers
-		{
-			width: 4em !important;
-		}
-		.gist .line,
-		.gist .line-number
-		{
-			font-size: 12px !important;
-			height: 18px !important;
-			line-height: 18px !important;
-		}
-		.gist .line
-		{
-			white-space: pre !important;
-			width: auto !important;
-			word-wrap: normal !important;
-		}
-		.gist .line span
-		{
-			word-wrap: normal !important;
-		}
-		</style>
-		<?php
-	}
-
 	public function handler( $m, $attr, $url, $rattr )
 	{
 		if ( !isset( $m[7] ) || !$m[7] ) {
@@ -151,7 +116,7 @@ class gist
 
 		wp_enqueue_script(
 			'oembed-gist',
-			plugins_url( 'js/script.js', __FILE__ ),
+			plugins_url( 'js/script.min.js', __FILE__ ),
 			array(),
 			self::version,
 			true
